@@ -1,9 +1,3 @@
 {
-  "version": 2,
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
-  ],
-  "env": {
-    "VITE_API_URL": "https://SEU-BACKEND-URL"
-  }
+  "rootDirectory": "frontend"
 }
