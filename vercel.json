@@ -9,8 +9,9 @@
       }
     }
   ],
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "/index.html" }
   ],
   "env": {
     "VITE_API_URL": "https://SEU-BACKEND-URL"
