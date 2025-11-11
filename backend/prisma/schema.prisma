@@ -1,0 +1,59 @@
+generator client {
+  provider = "prisma-client-js"
+  engineType = "binary"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            Int       @id @default(autoincrement())
+  name          String
+  email         String    @unique
+  password_hash String
+  projects      Project[]
+  createdAt     DateTime  @default(now())
+}
+
+model Project {
+  id        Int       @id @default(autoincrement())
+  user      User      @relation(fields: [userId], references: [id])
+  userId    Int
+  name      String
+  address   String?
+  status    ProjectStatus @default(ativo)
+  expenses  Expense[]
+  createdAt DateTime  @default(now())
+}
+
+enum ProjectStatus {
+  ativo
+  arquivado
+}
+
+model Expense {
+  id            Int        @id @default(autoincrement())
+  project       Project    @relation(fields: [projectId], references: [id])
+  projectId     Int
+  descricao     String
+  valor         Decimal    @db.Decimal(12, 2)
+  categoria     String?
+  data_registro DateTime   @default(now())
+  attachments   Attachment[]
+}
+
+model Attachment {
+  id        Int      @id @default(autoincrement())
+  expense   Expense  @relation(fields: [expenseId], references: [id])
+  expenseId Int
+  url       String
+  tipo      AttachmentTipo
+}
+
+enum AttachmentTipo {
+  nota
+  foto
+  orcamento
+}

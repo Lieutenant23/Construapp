@@ -1,0 +1,30 @@
+# Node
+node_modules/
+**/node_modules/
+dist/
+build/
+coverage/
+*.log
+
+# Env files
+.env
+**/.env
+.env.local
+.env.*.local
+
+# macOS
+.DS_Store
+
+# Vite/React
+frontend/dist/
+
+# Prisma (dev db)
+backend/prisma/dev.db
+
+# Uploads (keep dir via .gitkeep)
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# IDE/Editor
+.vscode/
+.idea/
